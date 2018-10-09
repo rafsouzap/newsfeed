@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.makeKeyAndVisible()
         
-        HomeRouter.present(at: self.window)
+        FeedRouter.present(at: self.window)
         return true
     }
 

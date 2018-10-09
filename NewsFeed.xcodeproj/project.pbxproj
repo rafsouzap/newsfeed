@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D2BC6A5216C522C006F5C31 /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2BC6A4216C522C006F5C31 /* NSObjectExtension.swift */; };
+		8D2BC6A7216C5D77006F5C31 /* FeedItemViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2BC6A6216C5D77006F5C31 /* FeedItemViewLayout.swift */; };
 		8DE27309216A9284008C564A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27308216A9284008C564A /* AppDelegate.swift */; };
-		8DE2730B216A9284008C564A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2730A216A9284008C564A /* ViewController.swift */; };
 		8DE27310216A9286008C564A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DE2730F216A9286008C564A /* Assets.xcassets */; };
 		8DE27313216A9286008C564A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DE27311216A9286008C564A /* LaunchScreen.storyboard */; };
 		8DE2731F216A97FC008C564A /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2731E216A97FC008C564A /* RequestError.swift */; };
@@ -18,14 +19,16 @@
 		8DE27327216A992A008C564A /* RequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27326216A992A008C564A /* RequestClient.swift */; };
 		8DE2732C216A9FDE008C564A /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2732B216A9FDE008C564A /* UIImageExtension.swift */; };
 		8DE2732E216AA027008C564A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2732D216AA027008C564A /* UIViewControllerExtension.swift */; };
-		8DE27334216AB41B008C564A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27333216AB41B008C564A /* HomeViewController.swift */; };
-		8DE2733A216AB849008C564A /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27339216AB849008C564A /* HomeRouter.swift */; };
+		8DE27334216AB41B008C564A /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27333216AB41B008C564A /* FeedViewController.swift */; };
+		8DE2733A216AB849008C564A /* FeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27339216AB849008C564A /* FeedRouter.swift */; };
+		8DE2733E216C3446008C564A /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2733D216C3446008C564A /* FeedItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D2BC6A4216C522C006F5C31 /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
+		8D2BC6A6216C5D77006F5C31 /* FeedItemViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemViewLayout.swift; sourceTree = "<group>"; };
 		8DE27305216A9284008C564A /* NewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DE27308216A9284008C564A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8DE2730A216A9284008C564A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8DE2730F216A9286008C564A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DE27312216A9286008C564A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8DE27314216A9286008C564A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -36,8 +39,9 @@
 		8DE27326216A992A008C564A /* RequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClient.swift; sourceTree = "<group>"; };
 		8DE2732B216A9FDE008C564A /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		8DE2732D216AA027008C564A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
-		8DE27333216AB41B008C564A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		8DE27339216AB849008C564A /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		8DE27333216AB41B008C564A /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		8DE27339216AB849008C564A /* FeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRouter.swift; sourceTree = "<group>"; };
+		8DE2733D216C3446008C564A /* FeedItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +78,6 @@
 				8DE27328216A99AB008C564A /* Features */,
 				8DE2731C216A96EF008C564A /* Helpers */,
 				8DE2731A216A96BC008C564A /* Resources */,
-				8DE2730A216A9284008C564A /* ViewController.swift */,
-				8DE27314216A9286008C564A /* Info.plist */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				8DE2731B216A96CC008C564A /* Assets */,
+				8DE27314216A9286008C564A /* Info.plist */,
 				8DE27311216A9286008C564A /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
@@ -121,7 +124,7 @@
 		8DE27328216A99AB008C564A /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				8DE2732F216AB3BF008C564A /* Home */,
+				8DE2732F216AB3BF008C564A /* Feed */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -137,13 +140,14 @@
 		8DE2732A216A9FCA008C564A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8D2BC6A4216C522C006F5C31 /* NSObjectExtension.swift */,
 				8DE2732B216A9FDE008C564A /* UIImageExtension.swift */,
 				8DE2732D216AA027008C564A /* UIViewControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8DE2732F216AB3BF008C564A /* Home */ = {
+		8DE2732F216AB3BF008C564A /* Feed */ = {
 			isa = PBXGroup;
 			children = (
 				8DE27338216AB837008C564A /* Router */,
@@ -151,7 +155,7 @@
 				8DE27331216AB3F7008C564A /* View */,
 				8DE27330216AB3EF008C564A /* Presenter */,
 			);
-			path = Home;
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		8DE27330216AB3EF008C564A /* Presenter */ = {
@@ -164,7 +168,9 @@
 		8DE27331216AB3F7008C564A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8DE27333216AB41B008C564A /* HomeViewController.swift */,
+				8D2BC6A6216C5D77006F5C31 /* FeedItemViewLayout.swift */,
+				8DE27333216AB41B008C564A /* FeedViewController.swift */,
+				8DE2733C216C339E008C564A /* ViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,9 +185,17 @@
 		8DE27338216AB837008C564A /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				8DE27339216AB849008C564A /* HomeRouter.swift */,
+				8DE27339216AB849008C564A /* FeedRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		8DE2733C216C339E008C564A /* ViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				8DE2733D216C3446008C564A /* FeedItemCell.swift */,
+			);
+			path = ViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,17 +268,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D2BC6A5216C522C006F5C31 /* NSObjectExtension.swift in Sources */,
 				8DE27327216A992A008C564A /* RequestClient.swift in Sources */,
 				8DE27321216A981C008C564A /* RequestMethod.swift in Sources */,
 				8DE2732E216AA027008C564A /* UIViewControllerExtension.swift in Sources */,
-				8DE2730B216A9284008C564A /* ViewController.swift in Sources */,
 				8DE27309216A9284008C564A /* AppDelegate.swift in Sources */,
-				8DE27334216AB41B008C564A /* HomeViewController.swift in Sources */,
+				8DE27334216AB41B008C564A /* FeedViewController.swift in Sources */,
+				8DE2733E216C3446008C564A /* FeedItemCell.swift in Sources */,
 				8DE27325216A98B5008C564A /* URLSessionRequestClient.swift in Sources */,
+				8D2BC6A7216C5D77006F5C31 /* FeedItemViewLayout.swift in Sources */,
 				8DE27323216A9867008C564A /* RequestClientProtocol.swift in Sources */,
 				8DE2731F216A97FC008C564A /* RequestError.swift in Sources */,
 				8DE2732C216A9FDE008C564A /* UIImageExtension.swift in Sources */,
-				8DE2733A216AB849008C564A /* HomeRouter.swift in Sources */,
+				8DE2733A216AB849008C564A /* FeedRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,12 +419,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NewsFeed/Info.plist;
+				DEVELOPMENT_TEAM = LB8UPYUFVF;
+				INFOPLIST_FILE = "$(SRCROOT)/NewsFeed/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaeldepaula.NewsFeed;
+				PRODUCT_BUNDLE_IDENTIFIER = newsFeed10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -420,12 +438,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = NewsFeed/Info.plist;
+				DEVELOPMENT_TEAM = LB8UPYUFVF;
+				INFOPLIST_FILE = "$(SRCROOT)/NewsFeed/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rafaeldepaula.NewsFeed;
+				PRODUCT_BUNDLE_IDENTIFIER = newsFeed10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
