@@ -1,5 +1,5 @@
 //
-//  FeedItemViewLayout.swift
+//  FeedListFlowLayout.swift
 //  NewsFeed
 //
 //  Created by Rafael de Paula on 09/10/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeedItemViewLayout: UICollectionViewFlowLayout {
+class FeedListFlowLayout: UICollectionViewFlowLayout {
     
     enum DeviceType {
         case iPad

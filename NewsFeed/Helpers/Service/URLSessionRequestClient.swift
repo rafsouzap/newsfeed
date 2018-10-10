@@ -10,8 +10,7 @@ import Foundation
 
 final class URLSessionRequestClient: RequestClientProtocol {
     
-    func request(method: RequestMethod, url: String, urlParameters: [String: String]?, parameters: [String: Any]?, success: @escaping (Any) -> Void, failure: @escaping (RequestError) -> Void) {
-
+    func request(method: RequestMethod, url: String, urlParameters: [String: String]?, parameters: [String: Any]?, success: @escaping (Data) -> Void, failure: @escaping (RequestError) -> Void) {
         guard let _url = URL(string: url) else {
             failure(RequestError.invalidUrl)
             return
@@ -21,17 +20,14 @@ final class URLSessionRequestClient: RequestClientProtocol {
         request.httpMethod = method.value
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        if let jsonBody = parameters {
-            if let httpBody = try? JSONSerialization.data(withJSONObject: jsonBody) {
-                request.httpBody = httpBody
-            }
+        if let jsonBody = parameters, let httpBody = try? JSONSerialization.data(withJSONObject: jsonBody) {
+            request.httpBody = httpBody
         }
         
         let session = URLSession(configuration: .default)
         
         let task = session.dataTask(with: request) { (data, response, error) in
-            
-            DispatchQueue.main.async {
+            DispatchQueue.global(qos: .background).async {
                 guard let response = response as? HTTPURLResponse else {
                     failure(RequestError.invalidResponse)
                     return
@@ -46,12 +42,9 @@ final class URLSessionRequestClient: RequestClientProtocol {
                     failure(RequestError.notMapped)
                     return
                 }
-                
-                let jsonBody = String(data: data, encoding: .utf8)!
-                success(jsonBody as AnyObject)
+                success(data)
             }
         }
         task.resume()
     }
-    
 }

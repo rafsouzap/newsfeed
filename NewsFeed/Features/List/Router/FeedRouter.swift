@@ -11,14 +11,11 @@ import UIKit
 final class FeedRouter {
     
     class func present(at window: UIWindow?) {
+        let controller = FeedListViewController()
+        let presenter = FeedListPresenter(view: controller)
+        controller.presenter = presenter
         
-        let controller = FeedViewController()
         let navigation = UINavigationController(rootViewController: controller)
-        
-//        let controller = UIStoryboard(name: "NewsFeed", bundle: nil).instantiateViewController(withIdentifier: FeedViewController.identifier) as! FeedViewController
-//        let navigationPresenter  = NavigationPresenter(view: navigationView)
-//        navigationView.presenter = navigationPresenter
-        
         window?.rootViewController = navigation
     }
 }
