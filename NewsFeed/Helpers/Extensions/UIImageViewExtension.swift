@@ -45,7 +45,7 @@ extension UIImageView {
                 }
             }
         }, failure: { fail in
-            
+            print(fail.description)
         })
     }
     

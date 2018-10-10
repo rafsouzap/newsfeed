@@ -23,7 +23,7 @@ final class FeedListViewController: UIViewController {
         self.setupUI()
         self.loadArticles()
     }
-
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.collectionView.collectionViewLayout.invalidateLayout()
@@ -43,8 +43,91 @@ final class FeedListViewController: UIViewController {
     }
 }
 
-// MARK: - Private methods
+// MARK: - UICollectionView (delegate/datasource) methods
+extension FeedListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let presenter = self.presenter else {
+            return 0
+        }
+        return presenter.feedItems.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedItemCell.identifier, for: indexPath) as? FeedItemCell else {
+            fatalError("Couldn't dequeue \(FeedItemCell.identifier)")
+        }
+        
+        guard let presenter = self.presenter else {
+            fatalError("Present can't be nil")
+        }
+        
+        let article = presenter.feedItems[indexPath.row]
+        cell.fillOutlets(with: article)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedIndexPath = indexPath
+        collectionView.performBatchUpdates(nil, completion: nil)
+        
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            self.selectedCell = cell
+            self.selectedIndexPath = indexPath
+            self.showArticleDetail()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 10)
+    }
+}
 
+// MARK: - UIViewControllerTransitioningDelegate methods
+extension FeedListViewController: UIViewControllerTransitioningDelegate {
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.originFrame = self.selectedCell.superview!.convert(selectedCell.frame, to: nil)
+        transition.presenting = true
+        return transition
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        return transition
+    }
+}
+
+// MARK: - FeedListViewProtocol methods
+extension FeedListViewController: FeedListViewProtocol {
+    
+    func showLoading() {
+        self.showActivityIndicator()
+    }
+    
+    func hideLoading() {
+        self.hideActivityIndicator()
+    }
+    
+    func reloadCollectionView() {
+        UIView.transition(with: self.collectionView, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.collectionView.reloadData()
+        })
+    }
+    
+    func showAlertError(title: String, message: String, buttonTitle: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Private methods
 extension FeedListViewController {
     
     fileprivate func setupUI() {
@@ -70,13 +153,13 @@ extension FeedListViewController {
         self.collectionView.dataSource = self
         self.collectionView.backgroundColor = .clear
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         self.view.addSubview(self.collectionView)
     }
     
     fileprivate func setupConstraints() {
         self.collectionView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 0).isActive = true
-        self.collectionView.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: 0).isActive = true
+        self.collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         self.collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         self.collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
     }
@@ -87,92 +170,14 @@ extension FeedListViewController {
         }
         presenter.loadData()
     }
-}
-
-// MARK: - UICollectionView (delegate/datasource) methods
-
-extension FeedListViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    fileprivate func showArticleDetail() {
         guard let presenter = self.presenter else {
-            return 0
-        }
-        return presenter.articles.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedItemCell.identifier, for: indexPath) as? FeedItemCell else {
-            fatalError("Couldn't dequeue \(FeedItemCell.identifier)")
+            fatalError("Presenter can't be nil")
         }
         
-        guard let presenter = self.presenter else {
-            fatalError("Present can't be nil")
+        if let indexPath = self.selectedIndexPath {
+            presenter.showDetail(index: indexPath.row)
         }
-        
-        let article = presenter.articles[indexPath.row]
-        cell.fillOutlets(with: article)
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedIndexPath = indexPath
-        collectionView.performBatchUpdates(nil, completion: nil)
-        
-        if let cell = collectionView.cellForItem(at: indexPath) {
-            self.selectedCell = cell
-            
-            let controller = FeedDetailViewController()
-            controller.modalPresentationStyle = .formSheet
-            controller.transitioningDelegate = self
-            self.present(controller, animated: true, completion: nil)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / 10)
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate methods
-
-extension FeedListViewController: UIViewControllerTransitioningDelegate {
-
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.originFrame = self.selectedCell.superview!.convert(selectedCell.frame, to: nil)
-        transition.presenting = true
-        return transition
-    }
-
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        transition.presenting = false
-        return transition
-    }
-}
-
-extension FeedListViewController: FeedListViewProtocol {
-    
-    func showLoading() {
-        
-    }
-    
-    func hideLoading() {
-        
-    }
-    
-    func reloadCollectionView() {
-        UIView.transition(with: self.collectionView, duration: 0.3, options: .transitionCrossDissolve, animations: {
-            self.collectionView.reloadData()
-        })
-    }
-    
-    func showAlertError(title: String, message: String, buttonTitle: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: buttonTitle, style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
 }

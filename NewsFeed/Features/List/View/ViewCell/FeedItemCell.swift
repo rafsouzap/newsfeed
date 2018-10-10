@@ -37,14 +37,11 @@ final class FeedItemCell: UICollectionViewCell {
         self.contentView.addSubview(self.articleImage)
 
         self.articleTitle = UILabel()
-        self.articleTitle.textAlignment = .left
         self.articleTitle.textColor = .white
         self.articleTitle.font = UIFont.boldSystemFont(ofSize: 19)
         self.articleTitle.numberOfLines = 0
         self.articleTitle.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(self.articleTitle)
-        
-        self.articleTitle.text = "Título"
     }
     
     private func setupConstraints() {

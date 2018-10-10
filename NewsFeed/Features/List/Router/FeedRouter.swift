@@ -18,5 +18,14 @@ final class FeedRouter {
         let navigation = UINavigationController(rootViewController: controller)
         window?.rootViewController = navigation
     }
+    
+    class func showDetail(at parent: UIViewController, with model: FeedDetailViewModel) {
+        let controller = FeedDetailViewController()
+        let presenter = FeedDetailPresenter(view: controller, viewModel: model)
+        controller.presenter = presenter
+        controller.modalPresentationStyle = .formSheet
+        controller.transitioningDelegate = parent as? UIViewControllerTransitioningDelegate
+        
+        parent.present(controller, animated: true, completion: nil)
+    }
 }
-
