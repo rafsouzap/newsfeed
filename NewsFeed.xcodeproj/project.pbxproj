@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69509E9A216E33160087A822 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69509E99216E33160087A822 /* UIColorExtension.swift */; };
+		69509E9C216E37D50087A822 /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69509E9B216E37D50087A822 /* UINavigationBarExtension.swift */; };
+		69509E9E216E4EB10087A822 /* FeedDetailPopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69509E9D216E4EB10087A822 /* FeedDetailPopAnimator.swift */; };
 		8D2BC6A5216C522C006F5C31 /* NSObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2BC6A4216C522C006F5C31 /* NSObjectExtension.swift */; };
 		8D2BC6A7216C5D77006F5C31 /* FeedListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2BC6A6216C5D77006F5C31 /* FeedListFlowLayout.swift */; };
 		8DAF33A7216D7FCD00B37A4B /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAF33A6216D7FCD00B37A4B /* FeedDetailViewController.swift */; };
@@ -26,14 +29,16 @@
 		8DE27323216A9867008C564A /* RequestClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27322216A9867008C564A /* RequestClientProtocol.swift */; };
 		8DE27325216A98B5008C564A /* URLSessionRequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27324216A98B5008C564A /* URLSessionRequestClient.swift */; };
 		8DE27327216A992A008C564A /* RequestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27326216A992A008C564A /* RequestClient.swift */; };
-		8DE2732C216A9FDE008C564A /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2732B216A9FDE008C564A /* UIImageExtension.swift */; };
-		8DE2732E216AA027008C564A /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2732D216AA027008C564A /* UIViewControllerExtension.swift */; };
+		8DE2732C216A9FDE008C564A /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2732B216A9FDE008C564A /* UIImageViewExtension.swift */; };
 		8DE27334216AB41B008C564A /* FeedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27333216AB41B008C564A /* FeedListViewController.swift */; };
 		8DE2733A216AB849008C564A /* FeedRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE27339216AB849008C564A /* FeedRouter.swift */; };
 		8DE2733E216C3446008C564A /* FeedItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE2733D216C3446008C564A /* FeedItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		69509E99216E33160087A822 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		69509E9B216E37D50087A822 /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
+		69509E9D216E4EB10087A822 /* FeedDetailPopAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailPopAnimator.swift; sourceTree = "<group>"; };
 		8D2BC6A4216C522C006F5C31 /* NSObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectExtension.swift; sourceTree = "<group>"; };
 		8D2BC6A6216C5D77006F5C31 /* FeedListFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListFlowLayout.swift; sourceTree = "<group>"; };
 		8DAF33A6216D7FCD00B37A4B /* FeedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
@@ -55,8 +60,7 @@
 		8DE27322216A9867008C564A /* RequestClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClientProtocol.swift; sourceTree = "<group>"; };
 		8DE27324216A98B5008C564A /* URLSessionRequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestClient.swift; sourceTree = "<group>"; };
 		8DE27326216A992A008C564A /* RequestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClient.swift; sourceTree = "<group>"; };
-		8DE2732B216A9FDE008C564A /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
-		8DE2732D216AA027008C564A /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		8DE2732B216A9FDE008C564A /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		8DE27333216AB41B008C564A /* FeedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedListViewController.swift; sourceTree = "<group>"; };
 		8DE27339216AB849008C564A /* FeedRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRouter.swift; sourceTree = "<group>"; };
 		8DE2733D216C3446008C564A /* FeedItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemCell.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				8DAF33A6216D7FCD00B37A4B /* FeedDetailViewController.swift */,
+				69509E9D216E4EB10087A822 /* FeedDetailPopAnimator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,8 +218,9 @@
 			isa = PBXGroup;
 			children = (
 				8D2BC6A4216C522C006F5C31 /* NSObjectExtension.swift */,
-				8DE2732B216A9FDE008C564A /* UIImageExtension.swift */,
-				8DE2732D216AA027008C564A /* UIViewControllerExtension.swift */,
+				69509E99216E33160087A822 /* UIColorExtension.swift */,
+				8DE2732B216A9FDE008C564A /* UIImageViewExtension.swift */,
+				69509E9B216E37D50087A822 /* UINavigationBarExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -347,14 +353,16 @@
 				8DAF33AB216D893C00B37A4B /* News.swift in Sources */,
 				8DAF33B5216D91D200B37A4B /* FeedListViewProtocol.swift in Sources */,
 				8DE27327216A992A008C564A /* RequestClient.swift in Sources */,
+				69509E9A216E33160087A822 /* UIColorExtension.swift in Sources */,
 				8DE27321216A981C008C564A /* RequestMethod.swift in Sources */,
-				8DE2732E216AA027008C564A /* UIViewControllerExtension.swift in Sources */,
 				8DAF33B3216D8BFB00B37A4B /* AppEnvironment.swift in Sources */,
 				8DE27309216A9284008C564A /* AppDelegate.swift in Sources */,
+				69509E9C216E37D50087A822 /* UINavigationBarExtension.swift in Sources */,
 				8DAF33A7216D7FCD00B37A4B /* FeedDetailViewController.swift in Sources */,
 				8DAF33AF216D8B1400B37A4B /* Source.swift in Sources */,
 				8DE27334216AB41B008C564A /* FeedListViewController.swift in Sources */,
 				8DE2733E216C3446008C564A /* FeedItemCell.swift in Sources */,
+				69509E9E216E4EB10087A822 /* FeedDetailPopAnimator.swift in Sources */,
 				8DE27325216A98B5008C564A /* URLSessionRequestClient.swift in Sources */,
 				8D2BC6A7216C5D77006F5C31 /* FeedListFlowLayout.swift in Sources */,
 				8DAF33B1216D8B8B00B37A4B /* NewsService.swift in Sources */,
@@ -362,7 +370,7 @@
 				8DE27323216A9867008C564A /* RequestClientProtocol.swift in Sources */,
 				8DAF33B7216D920800B37A4B /* FeedListPresenter.swift in Sources */,
 				8DE2731F216A97FC008C564A /* RequestError.swift in Sources */,
-				8DE2732C216A9FDE008C564A /* UIImageExtension.swift in Sources */,
+				8DE2732C216A9FDE008C564A /* UIImageViewExtension.swift in Sources */,
 				8DE2733A216AB849008C564A /* FeedRouter.swift in Sources */,
 				8DAF33AD216D8A1200B37A4B /* Article.swift in Sources */,
 			);

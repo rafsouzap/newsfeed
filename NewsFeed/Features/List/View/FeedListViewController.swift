@@ -9,10 +9,12 @@
 import UIKit
 
 final class FeedListViewController: UIViewController {
-
+    
     fileprivate var selectedCell = UICollectionViewCell()
     fileprivate var collectionView: UICollectionView!
     fileprivate var selectedIndexPath: IndexPath?
+    
+    fileprivate let transition = FeedDetailPopAnimator()
     
     var presenter: FeedListPresenter?
     
@@ -20,11 +22,6 @@ final class FeedListViewController: UIViewController {
         super.viewDidLoad()
         self.setupUI()
         self.loadArticles()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     override func viewWillLayoutSubviews() {
@@ -55,11 +52,15 @@ extension FeedListViewController {
         self.setupCollectionView()
         self.setupConstraints()
         
-        self.view.backgroundColor = .gray
+        self.view.backgroundColor = UIColor.viewBackgroundColor
     }
     
     fileprivate func setupNavigationBar() {
-        navigationItem.title = "Notícias"
+        self.navigationController?.navigationBar.setBarColor(UIColor.navigationBarColor)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,
+                                                                        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .heavy)]
+        self.navigationItem.title = "News Feed"
     }
     
     fileprivate func setupCollectionView() {
@@ -71,11 +72,6 @@ extension FeedListViewController {
         self.collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         self.view.addSubview(self.collectionView)
-        
-//        if #available(iOS 11.0, *) {
-//            self.collectionView.dragDelegate = self
-//            self.collectionView.dragInteractionEnabled = true
-//        }
     }
     
     fileprivate func setupConstraints() {
@@ -109,7 +105,17 @@ extension FeedListViewController: UICollectionViewDelegateFlowLayout, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedItemCell", for: indexPath) as! FeedItemCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedItemCell.identifier, for: indexPath) as? FeedItemCell else {
+            fatalError("Couldn't dequeue \(FeedItemCell.identifier)")
+        }
+        
+        guard let presenter = self.presenter else {
+            fatalError("Present can't be nil")
+        }
+        
+        let article = presenter.articles[indexPath.row]
+        cell.fillOutlets(with: article)
+        
         return cell
     }
     
@@ -119,7 +125,11 @@ extension FeedListViewController: UICollectionViewDelegateFlowLayout, UICollecti
         
         if let cell = collectionView.cellForItem(at: indexPath) {
             self.selectedCell = cell
-            //self.performSegue(withIdentifier: "newsDetailSegue", sender: cell)
+            
+            let controller = FeedDetailViewController()
+            controller.modalPresentationStyle = .formSheet
+            controller.transitioningDelegate = self
+            self.present(controller, animated: true, completion: nil)
         }
     }
     
@@ -133,16 +143,14 @@ extension FeedListViewController: UICollectionViewDelegateFlowLayout, UICollecti
 extension FeedListViewController: UIViewControllerTransitioningDelegate {
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        //        transition.originFrame = selectedCell.superview!.convert(selectedCell.frame, to: nil)
-        //        transition.presenting = true
-        //        return transition
-        return nil
+        transition.originFrame = self.selectedCell.superview!.convert(selectedCell.frame, to: nil)
+        transition.presenting = true
+        return transition
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        //        transition.presenting = false
-        //        return transition
-        return nil
+        transition.presenting = false
+        return transition
     }
 }
 
@@ -157,11 +165,9 @@ extension FeedListViewController: FeedListViewProtocol {
     }
     
     func reloadCollectionView() {
-        DispatchQueue.main.async {
-            UIView.transition(with: self.collectionView, duration: 0.3, options: .transitionCrossDissolve, animations: {
-                self.collectionView.reloadData()
-            })
-        }
+        UIView.transition(with: self.collectionView, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.collectionView.reloadData()
+        })
     }
     
     func showAlertError(title: String, message: String, buttonTitle: String) {

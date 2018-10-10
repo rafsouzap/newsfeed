@@ -19,8 +19,8 @@ class FeedListFlowLayout: UICollectionViewFlowLayout {
     
     var itemHeight: CGFloat {
         switch self.deviceType {
-        case .iPad: return (self.collectionView!.bounds.width / 2)
-        case .iPhone: return self.collectionView!.bounds.width
+        case .iPad: return (self.collectionView!.bounds.width * 0.8 / 2)
+        case .iPhone: return self.collectionView!.bounds.width * 0.8
         }
     }
     

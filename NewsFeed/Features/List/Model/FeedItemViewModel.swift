@@ -7,7 +7,6 @@
 //
 
 struct FeedItemViewModel {
-    
     let title: String
     let image: String
     

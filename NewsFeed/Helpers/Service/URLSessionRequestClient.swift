@@ -47,4 +47,36 @@ final class URLSessionRequestClient: RequestClientProtocol {
         }
         task.resume()
     }
+    
+    func downloadImage(url: String, success: @escaping (Data) -> Void, failure: @escaping (RequestError) -> Void) {
+        guard let _url = URL(string: url) else {
+            failure(RequestError.invalidUrl)
+            return
+        }
+        
+        URLSession.shared.dataTask(with: _url, completionHandler: { (data, response, error)in
+            DispatchQueue.global(qos: .background).async {
+                guard let response = response as? HTTPURLResponse else {
+                    failure(RequestError.invalidResponse)
+                    return
+                }
+                
+                guard 200 ... 300 ~= response.statusCode else {
+                    failure(RequestError(code: response.statusCode))
+                    return
+                }
+                
+                guard let mimeType = response.mimeType, mimeType.hasPrefix("image") else {
+                    failure(RequestError.notFound)
+                    return
+                }
+                
+                guard let data = data else {
+                    failure(RequestError.notMapped)
+                    return
+                }
+                success(data)
+            }
+        }).resume()
+    }
 }

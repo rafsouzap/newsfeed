@@ -41,13 +41,17 @@ extension FeedListPresenter {
 extension FeedListPresenter {
     
     fileprivate func updateCollectionView(with viewModel: [FeedItemViewModel]) {
-        self.articles = viewModel
-        self.view.hideLoading()
-        self.view.reloadCollectionView()
+        DispatchQueue.main.async {
+            self.articles = viewModel
+            self.view.hideLoading()
+            self.view.reloadCollectionView()
+        }
     }
     
     fileprivate func requestError(description: String) {
-        self.view.hideLoading()
-        self.view.showAlertError(title: "Erro", message: description, buttonTitle: "OK")
+        DispatchQueue.main.async {
+            self.view.hideLoading()
+            self.view.showAlertError(title: "Erro", message: description, buttonTitle: "OK")
+        }
     }
 }
