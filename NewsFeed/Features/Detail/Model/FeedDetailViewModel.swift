@@ -12,6 +12,7 @@ struct FeedDetailViewModel {
     let authorName: String?
     let content: String
     let image: String
+    let shareUrl: String
     
     init(with article: Article) {
         self.title = article.title
@@ -19,6 +20,7 @@ struct FeedDetailViewModel {
         self.authorName = article.author
         self.content = article.content
         self.image = article.urlToImage
+        self.shareUrl = article.url
     }
 }
 

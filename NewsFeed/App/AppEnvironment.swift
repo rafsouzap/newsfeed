@@ -7,7 +7,11 @@
 //
 
 enum AppEnvironment {
-
+    enum DeviceType {
+        case iPad
+        case iPhone
+    }
+    
     case baseServiceApi
     
     var value: String {

@@ -77,6 +77,31 @@ extension FeedDetailViewController {
     @IBAction func dismissDetailButtonTouched(_ sender: UIButton) {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func swipeToDismiss(_ sender: UISwipeGestureRecognizer) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func shareArticleButtonTouched(_ sender: UIButton) {
+        guard let presenter = self.presenter else {
+            fatalError("Presenter can't be nil")
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            let shareUrl = URL(string: presenter.article.shareUrl)!
+            let activity = UIActivityViewController(activityItems: [shareUrl], applicationActivities: nil)
+            activity.excludedActivityTypes = [.saveToCameraRoll,
+                                              .copyToPasteboard,
+                                              .assignToContact,
+                                              .print]
+            
+            if let popover = activity.popoverPresentationController {
+                popover.sourceView = self.shareArticleButton
+                popover.sourceRect = self.shareArticleButton.bounds
+            }
+            self.present(activity, animated: true, completion: nil)
+        })
+    }
 }
 
 // MARK: - FeedDetailViewProtocol methods
@@ -95,10 +120,12 @@ extension FeedDetailViewController: FeedDetailViewProtocol {
 extension FeedDetailViewController {
     
     fileprivate func setupUI() {
+        let swipeDismiss = UISwipeGestureRecognizer(target: self, action: #selector(self.swipeToDismiss(_:)))
+        swipeDismiss.direction = .down
+        self.view.addGestureRecognizer(swipeDismiss)
         
         self.scrollView = UIScrollView()
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
-        self.scrollView.contentInset = UIEdgeInsets(top: 310, left: 0, bottom: 0, right: 0)
         self.view.addSubview(self.scrollView)
         
         self.stackView = UIStackView()
@@ -124,7 +151,7 @@ extension FeedDetailViewController {
         self.shareArticleButton.setImage(UIImage(named: "IconShare"), for: .normal)
         self.shareArticleButton.tintColor = .white
         self.shareArticleButton.translatesAutoresizingMaskIntoConstraints = false
-        self.shareArticleButton.addTarget(self, action: #selector(dismissDetailButtonTouched(_:)), for: .touchUpInside)
+        self.shareArticleButton.addTarget(self, action: #selector(shareArticleButtonTouched(_:)), for: .touchUpInside)
         self.view.addSubview(self.shareArticleButton)
         
         self.articleTitle = UILabel()
@@ -172,7 +199,7 @@ extension FeedDetailViewController {
         let margins = self.view.layoutMarginsGuide
 
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: .alignAllCenterX, metrics: nil, views: ["scrollView": self.scrollView]))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: .alignAllCenterX, metrics: nil, views: ["scrollView": self.scrollView]))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-300-[scrollView]|", options: .alignAllCenterX, metrics: nil, views: ["scrollView": self.scrollView]))
         
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: .alignAllCenterX, metrics: nil, views: ["stackView": self.stackView]))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[stackView]|", options: .alignAllCenterX, metrics: nil, views: ["stackView": self.stackView]))

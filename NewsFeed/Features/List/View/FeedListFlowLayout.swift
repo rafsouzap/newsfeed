@@ -10,12 +10,7 @@ import UIKit
 
 class FeedListFlowLayout: UICollectionViewFlowLayout {
     
-    enum DeviceType {
-        case iPad
-        case iPhone
-    }
-    
-    fileprivate var deviceType: DeviceType = .iPhone
+    fileprivate var deviceType: AppEnvironment.DeviceType = .iPhone
     
     var itemHeight: CGFloat {
         switch self.deviceType {
@@ -33,10 +28,9 @@ class FeedListFlowLayout: UICollectionViewFlowLayout {
     
     override init() {
         super.init()
-        
     }
     
-    convenience init(device: DeviceType) {
+    convenience init(device: AppEnvironment.DeviceType) {
         self.init()
         self.deviceType = device
         self.setupLayout()
